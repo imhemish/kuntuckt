@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "447330149286",
+    "project_id": "kuntuckt-a1835",
+    "storage_bucket": "kuntuckt-a1835.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447330149286:android:8288c746d810c13d932567",
+        "android_client_info": {
+          "package_name": "com.example.kuntuckt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJtZmL23-GWI5TYPhv_Umb6mvIu4omOF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
