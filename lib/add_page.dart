@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import './drawer.dart';
+import 'package:http/http.dart' as http;
 
 class AddPage extends StatefulWidget {
   const AddPage({super.key});
@@ -16,6 +20,7 @@ class _AddPageState extends State<AddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const MyDrawer(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Add"),
@@ -51,6 +56,16 @@ class _AddPageState extends State<AddPage> {
                       {"name": _nameController.text,
                       "phone": _phoneController.text}
                       ).then((value) { 
+                        var headers = {"accept": "application/json", "content-type": "application/json", "Authorization": "Basic OTlmMjcxNDYtZjcyYy00NTA3LWJiZjktYWUwZTVhMGUzOGU5"};
+                        http.post(Uri.parse("https://api.onesignal.com/notifications"), headers: headers, body: jsonEncode({
+                          "included_segments": [
+    "Total Subscriptions",
+  ],
+                          "app_id": "ce9b9e00-1c44-4c39-8972-b791f8bca0e3",
+                          "contents": {"en": "$_nameController.text : $_phoneController.text"},
+                          "headings": {"en": "New contact added"}
+
+                        })).then((value) => print(value.body+" "+value.statusCode.toString()));
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Successfully Added")));
                         });
